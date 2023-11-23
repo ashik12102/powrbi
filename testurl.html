@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Switcher</title>
+</head>
+<body>
+    <iframe id="urlFrame" width="1840" height="1000" frameborder="0"></iframe>
+
+    <script>
+        // Array of URLs to switch between
+        var urls = [
+            'https://app.powerbi.com/reportEmbed?reportId=25fac50a-a89b-46e1-bba7-9a7899d56475&autoAuth=true&ctid=720b637a-655a-40cf-816a-f22f40755c2c',
+            'https://app.powerbi.com/reportEmbed?reportId=17c1801b-ac52-4850-adfd-111f54c53813&autoAuth=true&ctid=720b637a-655a-40cf-816a-f22f40755c2c'
+            // Add more URLs as needed
+        ];
+
+        // Time interval in milliseconds (e.g., 10 seconds)
+        var switchInterval = 10000;
+
+        var currentIndex = 0;
+        var urlFrame = document.getElementById('urlFrame');
+
+        function switchURL() {
+            // Update the iframe source with the next URL
+            urlFrame.src = urls[currentIndex];
+
+            // Move to the next URL in the array
+            currentIndex = (currentIndex + 1) % urls.length;
+
+            // Set a timeout to switch again after the specified interval
+            setTimeout(switchURL, switchInterval);
+        }
+
+        // Initial call to start the switching process
+        switchURL();
+    </script>
+</body>
+</html>
